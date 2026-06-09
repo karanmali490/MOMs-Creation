@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details – Mom's Textile</title>
+  <meta name="description" content="View product details for Mom's Textile catalog items." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    .detail-hero { padding: 140px 0 56px; background: linear-gradient(135deg, var(--primary-light), var(--secondary-light)); }
+    .detail-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; padding: 56px 0 80px; }
+    .detail-card, .detail-panel { background: white; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .detail-card { padding: 40px; }
+    .detail-panel { padding: 32px; align-self: start; }
+    .detail-badge { font-family: var(--font-head); font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--secondary); }
+    .detail-name { font-family: var(--font-head); font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 800; color: var(--dark); margin: 8px 0 14px; }
+    .detail-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 22px; }
+    .info-box { background: var(--light); border-radius: var(--radius-sm); padding: 16px; }
+    .info-box span { display: block; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--gray); margin-bottom: 6px; }
+    .info-box strong { color: var(--dark); font-family: var(--font-head); }
+    .detail-art { min-height: 320px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 6rem; background: var(--primary-light); }
+    .section-title-sm { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 12px; }
+    .detail-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .empty-state { text-align: center; padding: 72px 24px; }
+    @media (max-width: 900px) { .detail-layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-circle">M</span>
+        <span class="logo-text">Mom's <em>Textiles</em></span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="products.html" class="active">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="detail-hero">
+    <div class="container">
+      <p class="eyebrow">Product Details</p>
+      <h1 class="section-title">Explore the catalog item</h1>
+      <p class="breadcrumb"><a href="index.html">Home</a> / <a href="products.html">Products</a> / Details</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <div id="detailContent"></div>
+  </main>
+
+  <a href="https://wa.me/917887888433" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <span class="wa-icon">💬</span>
+    <span class="wa-label">Chat with us</span>
+  </a>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <footer class="footer" style="margin-top:0;">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo logo-light">
+          <span class="logo-circle">M</span>
+          <span class="logo-text">Mom's <em>Textiles</em></span>
+        </a>
+        <p>Premium custom textile products manufactured in Pune, India. Bulk orders welcome.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links"><h5>&nbsp;</h5><ul></ul></div>
+      <div class="footer-contact">
+        <h5>Get In Touch</h5>
+        <p>📞 +91 788 788 8433</p>
+        <p>✉️ info@momstextiles.com</p>
+        <p>🌐 www.momstextiles.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><div class="container"><p>&copy; 2024 Mom's Textile. All rights reserved.</p></div></div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    const productCatalog = {
+      'sanchi-canvas': { name: 'Sanchi Canvas Tote Bag', catLabel: 'Tote Bag', fabric: 'Canvas', material: 'Canvas, Gray, Cotton & Jute', size: '14 × 16', weight: '500g', gsm: '110', icon: '🛍️', bg: '#f0e8ff', description: 'A durable canvas tote designed for daily use and bulk branding.' },
+      'cushion-cover': { name: 'Cushion Cover', catLabel: 'Home & Kitchen', fabric: 'Cotton', material: 'Cotton, Fur, Velvet & Silk', size: 'All Type', weight: '300g', gsm: '90', icon: '🛋️', bg: '#e8f4ff', description: 'Soft and customizable cushion covers for homes, gifting, and hospitality.' },
+      'sanchi-denim': { name: 'Sanchi Denim Tote Bag', catLabel: 'Tote Bag', fabric: 'Denim', material: 'Denim', size: '14 × 16', weight: '700g', gsm: '110', icon: '👖', bg: '#e8eeff', description: 'A sturdy denim tote with a premium finish and strong carry capacity.' },
+      'office-bag': { name: 'Office Bag', catLabel: 'Professional Bag', fabric: 'Cotton', material: 'Cotton, Canvas, Denim', size: 'All Type', weight: '1kg', gsm: '110', icon: '💼', bg: '#e8fff0', description: 'Practical office bag option suited for professional and corporate use.' },
+      'fashion-purse': { name: 'Fashion Purse', catLabel: 'Lady Product', fabric: 'Crochet', material: 'Cotton, Crochet', size: 'All Type', weight: '2kg', gsm: '110', icon: '👜', bg: '#fff0f5', description: 'Handcrafted fashion purse for lifestyle and retail use.' },
+      'embroidery-diary': { name: 'Embroidery Diary', catLabel: 'Diary Product', fabric: 'Cotton', material: '100% Cotton', size: 'All Type', weight: '1.7kg', gsm: '110', icon: '🌸', bg: '#ffe8f0', description: 'Decorative diary product with embroidery detailing and premium finishing.' },
+      'baby-bed': { name: 'Slipping Bed With Net', catLabel: 'Baby Product', fabric: 'Cotton', material: '100% Cotton', size: 'All Type', weight: '1.7kg', gsm: '110', icon: '🛏️', bg: '#e8f8ff', description: 'A baby sleeping bed with net protection for comfort and everyday use.' },
+      'pet-bed': { name: 'Pet Bed', catLabel: 'Pet Product', fabric: 'Cotton', material: '100% Cotton', size: 'All Type', weight: '2kg', gsm: '110', icon: '🐾', bg: '#fff8e8', description: 'Comfortable cotton pet bed made for durable, easy-care use.' }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('id');
+    const product = productCatalog[productId];
+    const detailContent = document.getElementById('detailContent');
+
+    if (!product) {
+      detailContent.innerHTML = `
+        <div class="empty-state detail-card">
+          <h2 class="section-title">Product not found</h2>
+          <p class="about-desc">The requested item does not exist in the current catalog.</p>
+          <div class="detail-actions" style="justify-content:center;">
+            <a class="btn btn-primary" href="products.html">Back to Products</a>
+            <a class="btn btn-outline" href="contact.html">Contact Us</a>
+          </div>
+        </div>
+      `;
+    } else {
+      detailContent.innerHTML = `
+        <div class="detail-layout">
+          <section class="detail-card">
+            <p class="detail-badge">${product.catLabel}</p>
+            <h1 class="detail-name">${product.name}</h1>
+            <p class="about-desc">${product.description}</p>
+            <div class="detail-grid">
+              <div class="info-box"><span>Fabric</span><strong>${product.fabric}</strong></div>
+              <div class="info-box"><span>Material</span><strong>${product.material}</strong></div>
+              <div class="info-box"><span>Size</span><strong>${product.size}</strong></div>
+              <div class="info-box"><span>Weight</span><strong>${product.weight}</strong></div>
+              <div class="info-box"><span>GSM</span><strong>${product.gsm}</strong></div>
+              <div class="info-box"><span>Category</span><strong>${product.catLabel}</strong></div>
+            </div>
+            <div class="detail-actions">
+              <a class="btn btn-primary" href="contact.html">Enquire Now</a>
+              <a class="btn btn-outline" href="products.html">Back to Products</a>
+            </div>
+          </section>
+          <aside class="detail-panel">
+            <div class="detail-art" style="background:${product.bg};">${product.icon}</div>
+            <div style="margin-top:22px;">
+              <h3 class="section-title-sm">Bulk Order Ready</h3>
+              <p class="about-desc">This product can be customized with logos, prints, or fabric variations depending on order size.</p>
+            </div>
+          </aside>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

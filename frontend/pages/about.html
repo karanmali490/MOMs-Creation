@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – Mom's Textile</title>
+  <meta name="description" content="Learn about Mom's Textile — our story, mission, and commitment to premium textile products." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    .page-hero { padding:140px 0 60px; background:linear-gradient(135deg,var(--primary-light),var(--secondary-light)); }
+    .page-hero h1 { font-family:var(--font-head); font-size:clamp(1.8rem,4vw,3rem); font-weight:800; color:var(--dark); }
+    .breadcrumb { font-size:.83rem; color:var(--gray); margin-top:8px; }
+    .breadcrumb a { color:var(--primary); }
+    .story-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; padding:80px 0; }
+    .story-text p { color:var(--gray); font-size:.95rem; line-height:1.8; margin-bottom:16px; }
+    .vision-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:40px; }
+    .vision-card { background:white; border-radius:var(--radius); padding:28px; box-shadow:var(--shadow); }
+    .vision-card .v-icon { font-size:2rem; margin-bottom:12px; display:block; }
+    .vision-card h4 { font-family:var(--font-head); font-size:1rem; font-weight:700; color:var(--dark); margin-bottom:8px; }
+    .vision-card p { font-size:.85rem; color:var(--gray); line-height:1.6; }
+    .process-section { background:var(--light); padding:80px 0; }
+    .process-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:48px; }
+    .process-step { text-align:center; }
+    .step-num { width:56px; height:56px; background:var(--primary); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--font-head); font-weight:700; font-size:1.2rem; margin:0 auto 16px; }
+    .process-step h5 { font-family:var(--font-head); font-size:.95rem; font-weight:600; color:var(--dark); margin-bottom:8px; }
+    .process-step p { font-size:.82rem; color:var(--gray); line-height:1.5; }
+    .story-visual { background:linear-gradient(135deg,var(--primary-light),var(--secondary-light)); border-radius:var(--radius); padding:48px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; min-height:360px; }
+    .brand-circle { width:120px; height:120px; background:var(--primary); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-family:var(--font-head); font-size:3rem; font-weight:800; }
+    .brand-tagline { font-family:var(--font-head); font-size:1.1rem; font-weight:600; color:var(--primary); text-align:center; }
+    @media(max-width:768px) { .story-grid { grid-template-columns:1fr; } .story-visual { display:none; } .vision-grid { grid-template-columns:1fr; } .process-grid { grid-template-columns:repeat(2,1fr); } }
+  </style>
+</head>
+<body>
+
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="../index.html" class="logo">
+        <span class="logo-circle">M</span>
+        <span class="logo-text">Mom's <em>Textiles</em></span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="../index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html" class="active">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Our Story</p>
+      <h1>About Mom's Textile</h1>
+      <p class="breadcrumb"><a href="../index.html">Home</a> / About</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-text">
+        <p class="eyebrow">Who We Are</p>
+        <h2 class="section-title">Crafted With Purpose,<br/>Built for Quality</h2>
+        <p>Mom's Textile is a Pune-based manufacturer and supplier of premium custom textile products. We started with a simple belief: that everyday textile items — tote bags, home furnishings, accessories — could be both beautiful and durable.</p>
+        <p>From our origins introducing customised products to the market, we've grown into a full-range manufacturer covering everything from Sanchi tote bags and professional bags to baby products, pet accessories, diaries, and lady purses.</p>
+        <p>Every product in our catalog is made with carefully sourced fabrics — cotton, canvas, denim, jute, crochet — crafted to handle bulk production without compromising on finish or quality.</p>
+
+        <div class="vision-grid">
+          <div class="vision-card">
+            <span class="v-icon">🎯</span>
+            <h4>Our Mission</h4>
+            <p>To provide businesses and individuals with premium, customisable textile products at manufacturer-direct prices.</p>
+          </div>
+          <div class="vision-card">
+            <span class="v-icon">👁️</span>
+            <h4>Our Vision</h4>
+            <p>To be India's most trusted custom textile manufacturer, known for quality, variety, and customer service.</p>
+          </div>
+        </div>
+      </div>
+      <div class="story-visual">
+        <div class="brand-circle">M</div>
+        <div class="brand-tagline">Mom's Textiles<br/><small style="font-weight:400;font-size:.85rem;color:var(--gray);">Introducing Customise Products</small></div>
+        <div style="display:flex;gap:16px;margin-top:8px;">
+          <div style="text-align:center;"><span style="font-family:var(--font-head);font-size:1.8rem;font-weight:700;color:var(--primary);">40+</span><br/><span style="font-size:.75rem;color:var(--gray);">Products</span></div>
+          <div style="width:1px;background:var(--gray-light);"></div>
+          <div style="text-align:center;"><span style="font-family:var(--font-head);font-size:1.8rem;font-weight:700;color:var(--secondary);">8</span><br/><span style="font-size:.75rem;color:var(--gray);">Categories</span></div>
+          <div style="width:1px;background:var(--gray-light);"></div>
+          <div style="text-align:center;"><span style="font-family:var(--font-head);font-size:1.8rem;font-weight:700;color:var(--success);">100%</span><br/><span style="font-size:.75rem;color:var(--gray);">Cotton Options</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="process-section">
+    <div class="container">
+      <p class="eyebrow center">How We Work</p>
+      <h2 class="section-title center">Our Manufacturing Process</h2>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <h5>Design &amp; Consultation</h5>
+          <p>We work with you to understand your requirements — size, fabric, print, logo, or custom design.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <h5>Fabric Sourcing</h5>
+          <p>We source the right fabric — canvas, cotton, denim, jute, or crochet — based on product specifications.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <h5>Manufacturing</h5>
+          <p>Skilled artisans cut, stitch, print, or embroider your product to exact dimensions and quality standards.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <h5>Quality Control &amp; Dispatch</h5>
+          <p>Every batch is inspected before packing. Bulk orders are dispatched efficiently with consistent quality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="cta-bg"><div class="cta-shape"></div></div>
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <h2>Ready to Place a Bulk Order?</h2>
+        <p>Reach out today for custom pricing, samples, and delivery timelines.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="contact.html" class="btn btn-white">Get in Touch</a>
+        <a href="https://wa.me/917887888433" class="btn btn-whatsapp" target="_blank" rel="noopener">WhatsApp Us</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo logo-light">
+          <span class="logo-circle">M</span>
+          <span class="logo-text">Mom's <em>Textiles</em></span>
+        </a>
+        <p>Premium custom textile products from Pune, India.</p>
+      </div>
+      <div class="footer-links">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links"><h5>&nbsp;</h5><ul></ul></div>
+      <div class="footer-contact">
+        <h5>Get In Touch</h5>
+        <p>📞 +91 788 788 8433</p>
+        <p>✉️ info@momstextiles.com</p>
+        <p>🌐 www.momstextiles.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><div class="container"><p>&copy; 2024 Mom's Textile. All rights reserved.</p></div></div>
+  </footer>
+
+  <a href="https://wa.me/917887888433" class="whatsapp-float" target="_blank" rel="noopener">
+    <span class="wa-icon">💬</span><span class="wa-label">Chat with us</span>
+  </a>
+  <button class="back-to-top" id="backToTop">↑</button>
+  <script src="../js/main.js"></script>
+</body>
+</html>
