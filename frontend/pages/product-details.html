@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,27 +8,121 @@
   <meta name="description" content="View product details for Mom's Textile catalog items." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="../css/main.css" />
   <style>
-    .detail-hero { padding: 140px 0 56px; background: linear-gradient(135deg, var(--primary-light), var(--secondary-light)); }
-    .detail-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; padding: 56px 0 80px; }
-    .detail-card, .detail-panel { background: white; border-radius: var(--radius); box-shadow: var(--shadow); }
-    .detail-card { padding: 40px; }
-    .detail-panel { padding: 32px; align-self: start; }
-    .detail-badge { font-family: var(--font-head); font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--secondary); }
-    .detail-name { font-family: var(--font-head); font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 800; color: var(--dark); margin: 8px 0 14px; }
-    .detail-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 22px; }
-    .info-box { background: var(--light); border-radius: var(--radius-sm); padding: 16px; }
-    .info-box span { display: block; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--gray); margin-bottom: 6px; }
-    .info-box strong { color: var(--dark); font-family: var(--font-head); }
-    .detail-art { min-height: 320px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 6rem; background: var(--primary-light); }
-    .section-title-sm { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 12px; }
-    .detail-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-    .empty-state { text-align: center; padding: 72px 24px; }
-    @media (max-width: 900px) { .detail-layout { grid-template-columns: 1fr; } }
+    .detail-hero {
+      padding: 140px 0 56px;
+      background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+    }
+
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 40px;
+      padding: 56px 0 80px;
+    }
+
+    .detail-card,
+    .detail-panel {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .detail-card {
+      padding: 40px;
+    }
+
+    .detail-panel {
+      padding: 32px;
+      align-self: start;
+    }
+
+    .detail-badge {
+      font-family: var(--font-head);
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--secondary);
+    }
+
+    .detail-name {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      font-weight: 800;
+      color: var(--dark);
+      margin: 8px 0 14px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .info-box {
+      background: var(--light);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+    }
+
+    .info-box span {
+      display: block;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--gray);
+      margin-bottom: 6px;
+    }
+
+    .info-box strong {
+      color: var(--dark);
+      font-family: var(--font-head);
+    }
+
+    .detail-art {
+      min-height: 320px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      background: var(--primary-light);
+    }
+
+    .section-title-sm {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+
+    .detail-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 72px 24px;
+    }
+
+    @media (max-width: 900px) {
+      .detail-layout {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <header class="navbar" id="navbar">
@@ -58,7 +153,8 @@
     <div id="detailContent"></div>
   </main>
 
-  <a href="https://wa.me/917887888433" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <a href="https://wa.me/917887888433" class="whatsapp-float" target="_blank" rel="noopener"
+    aria-label="Chat on WhatsApp">
     <span class="wa-icon">💬</span>
     <span class="wa-label">Chat with us</span>
   </a>
@@ -82,7 +178,10 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
-      <div class="footer-links"><h5>&nbsp;</h5><ul></ul></div>
+      <div class="footer-links">
+        <h5>&nbsp;</h5>
+        <ul></ul>
+      </div>
       <div class="footer-contact">
         <h5>Get In Touch</h5>
         <p>📞 +91 788 788 8433</p>
@@ -90,7 +189,11 @@
         <p>🌐 www.momstextiles.com</p>
       </div>
     </div>
-    <div class="footer-bottom"><div class="container"><p>&copy; 2024 Mom's Textile. All rights reserved.</p></div></div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2024 Mom's Textile. All rights reserved.</p>
+      </div>
+    </div>
   </footer>
 
   <script src="../js/main.js"></script>
@@ -138,9 +241,20 @@
               <div class="info-box"><span>Category</span><strong>${product.catLabel}</strong></div>
             </div>
             <div class="detail-actions">
-              <a class="btn btn-primary" href="contact.html">Enquire Now</a>
-              <a class="btn btn-outline" href="products.html">Back to Products</a>
-            </div>
+
+  <a class="btn btn-primary" href="cart.html">
+    Add To Cart
+  </a>
+
+  <a class="btn btn-outline" href="checkout.html">
+    Buy Now
+  </a>
+
+  <a class="btn btn-outline" href="products.html">
+    Back To Products
+  </a>
+
+</div>
           </section>
           <aside class="detail-panel">
             <div class="detail-art" style="background:${product.bg};">${product.icon}</div>
@@ -154,4 +268,5 @@
     }
   </script>
 </body>
+
 </html>
