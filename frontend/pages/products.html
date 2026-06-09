@@ -1,57 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Products – Mom's Textile</title>
-  <meta name="description" content="Browse Mom's Textile full catalog: tote bags, home textiles, professional bags, baby products, diaries and more." />
+  <meta name="description"
+    content="Browse Mom's Textile full catalog: tote bags, home textiles, professional bags, baby products, diaries and more." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="../css/main.css" />
   <style>
-    .page-hero { padding: 140px 0 60px; background: linear-gradient(135deg, var(--primary-light), var(--secondary-light)); }
-    .page-hero h1 { font-family: var(--font-head); font-size: clamp(1.8rem,4vw,3rem); font-weight: 800; color: var(--dark); }
-    .breadcrumb { font-size:0.83rem; color:var(--gray); margin-top:8px; }
-    .breadcrumb a { color:var(--primary); }
-    .products-layout { display: grid; grid-template-columns: 260px 1fr; gap: 40px; padding: 60px 0; }
-    .sidebar { position: sticky; top: 90px; align-self: start; }
-    .filter-group { background:white; border-radius:var(--radius); padding:24px; box-shadow:var(--shadow); margin-bottom:20px; }
-    .filter-group h4 { font-family:var(--font-head); font-size:0.9rem; font-weight:600; color:var(--dark); margin-bottom:16px; border-bottom:1px solid var(--gray-light); padding-bottom:10px; }
-    .filter-option { display:flex; align-items:center; gap:10px; margin-bottom:10px; cursor:pointer; }
-    .filter-option input { accent-color: var(--primary); width:16px; height:16px; cursor:pointer; }
-    .filter-option label { font-size:0.85rem; color:var(--gray); cursor:pointer; flex:1; }
-    .filter-option label:hover { color:var(--primary); }
-    .search-box { display:flex; gap:0; margin-bottom:20px; }
-    .search-box input { flex:1; padding:12px 16px; border:2px solid var(--gray-light); border-radius:var(--radius-sm) 0 0 var(--radius-sm); font-family:var(--font-body); font-size:0.9rem; outline:none; transition:var(--transition); }
-    .search-box input:focus { border-color:var(--primary); }
-    .search-box button { background:var(--primary); color:white; border:none; padding:12px 16px; border-radius:0 var(--radius-sm) var(--radius-sm) 0; cursor:pointer; font-size:1rem; }
-    .products-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; flex-wrap:wrap; gap:12px; }
-    .results-count { font-size:0.88rem; color:var(--gray); }
-    .sort-select { padding:10px 14px; border:2px solid var(--gray-light); border-radius:var(--radius-sm); font-family:var(--font-body); font-size:0.85rem; color:var(--dark); outline:none; cursor:pointer; }
-    .sort-select:focus { border-color:var(--primary); }
-    .products-main { }
-    #productGrid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-    .product-card { background:white; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:var(--transition); }
-    .product-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-md); }
-    .product-img { height:160px; display:flex; align-items:center; justify-content:center; font-size:3rem; }
-    .product-info { padding:18px; }
-    .product-cat { font-family:var(--font-head); font-size:0.68rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--secondary); display:block; margin-bottom:4px; }
-    .product-info h4 { font-family:var(--font-head); font-size:0.92rem; font-weight:600; color:var(--dark); margin-bottom:6px; }
-    .product-specs { font-size:0.73rem; color:var(--gray); margin-bottom:14px; line-height:1.4; }
-    .product-footer { display:flex; gap:8px; align-items:center; }
-    .no-results { text-align:center; padding:60px 24px; color:var(--gray); font-size:1rem; }
-    .active-filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
-    .filter-tag { background:var(--primary-light); color:var(--primary); font-family:var(--font-head); font-size:0.72rem; font-weight:600; padding:4px 12px; border-radius:20px; display:flex; align-items:center; gap:6px; }
-    .filter-tag button { background:none; border:none; cursor:pointer; color:var(--primary); font-size:1rem; line-height:1; padding:0; }
-    @media(max-width:1024px) { #productGrid { grid-template-columns:repeat(2,1fr); } }
+    .page-hero {
+      padding: 140px 0 60px;
+      background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+    }
+
+    .page-hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .breadcrumb {
+      font-size: 0.83rem;
+      color: var(--gray);
+      margin-top: 8px;
+    }
+
+    .breadcrumb a {
+      color: var(--primary);
+    }
+
+    .products-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 40px;
+      padding: 60px 0;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 90px;
+      align-self: start;
+    }
+
+    .filter-group {
+      background: white;
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+
+    .filter-group h4 {
+      font-family: var(--font-head);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--gray-light);
+      padding-bottom: 10px;
+    }
+
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .filter-option input {
+      accent-color: var(--primary);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .filter-option label {
+      font-size: 0.85rem;
+      color: var(--gray);
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .filter-option label:hover {
+      color: var(--primary);
+    }
+
+    .search-box {
+      display: flex;
+      gap: 0;
+      margin-bottom: 20px;
+    }
+
+    .search-box input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 2px solid var(--gray-light);
+      border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+    }
+
+    .search-box button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .products-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .results-count {
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+
+    .sort-select {
+      padding: 10px 14px;
+      border: 2px solid var(--gray-light);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--dark);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .sort-select:focus {
+      border-color: var(--primary);
+    }
+
+    .products-main {}
+
+    #productGrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .product-img {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .product-info {
+      padding: 18px;
+    }
+
+    .product-cat {
+      font-family: var(--font-head);
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--secondary);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .product-info h4 {
+      font-family: var(--font-head);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .product-specs {
+      font-size: 0.73rem;
+      color: var(--gray);
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    .product-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .btn-success {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-warning {
+      background: #ffc107;
+      color: black;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+    }
+
+    .btn-success:hover {
+      background: #218838;
+    }
+
+    .btn-warning:hover {
+      background: #e0a800;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--gray);
+      font-size: 1rem;
+    }
+
+    .active-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .filter-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-family: var(--font-head);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-tag button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--primary);
+      font-size: 1rem;
+      line-height: 1;
+      padding: 0;
+    }
+
+    @media(max-width:1024px) {
+      #productGrid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media(max-width:768px) {
-      .products-layout { grid-template-columns:1fr; }
-      .sidebar { position:static; }
-      #productGrid { grid-template-columns:1fr; }
+      .products-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      #productGrid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <header class="navbar" id="navbar">
@@ -92,23 +343,36 @@
       <aside class="sidebar">
         <div class="filter-group">
           <h4>Category</h4>
-          <div class="filter-option"><input type="checkbox" id="f-tote" value="tote" /><label for="f-tote">Tote Bags</label></div>
-          <div class="filter-option"><input type="checkbox" id="f-home" value="home" /><label for="f-home">Home &amp; Kitchen</label></div>
-          <div class="filter-option"><input type="checkbox" id="f-covers" value="covers" /><label for="f-covers">Covers</label></div>
-          <div class="filter-option"><input type="checkbox" id="f-professional" value="professional" /><label for="f-professional">Professional Bags</label></div>
-          <div class="filter-option"><input type="checkbox" id="f-lady" value="lady" /><label for="f-lady">Lady Products</label></div>
-          <div class="filter-option"><input type="checkbox" id="f-diary" value="diary" /><label for="f-diary">Diary Products</label></div>
-          <div class="filter-option"><input type="checkbox" id="f-baby" value="baby" /><label for="f-baby">Baby Products</label></div>
-          <div class="filter-option"><input type="checkbox" id="f-pet" value="pet" /><label for="f-pet">Pet Products</label></div>
+          <div class="filter-option"><input type="checkbox" id="f-tote" value="tote" /><label for="f-tote">Tote
+              Bags</label></div>
+          <div class="filter-option"><input type="checkbox" id="f-home" value="home" /><label for="f-home">Home &amp;
+              Kitchen</label></div>
+          <div class="filter-option"><input type="checkbox" id="f-covers" value="covers" /><label
+              for="f-covers">Covers</label></div>
+          <div class="filter-option"><input type="checkbox" id="f-professional" value="professional" /><label
+              for="f-professional">Professional Bags</label></div>
+          <div class="filter-option"><input type="checkbox" id="f-lady" value="lady" /><label for="f-lady">Lady
+              Products</label></div>
+          <div class="filter-option"><input type="checkbox" id="f-diary" value="diary" /><label for="f-diary">Diary
+              Products</label></div>
+          <div class="filter-option"><input type="checkbox" id="f-baby" value="baby" /><label for="f-baby">Baby
+              Products</label></div>
+          <div class="filter-option"><input type="checkbox" id="f-pet" value="pet" /><label for="f-pet">Pet
+              Products</label></div>
         </div>
 
         <div class="filter-group">
           <h4>Fabric</h4>
-          <div class="filter-option"><input type="checkbox" id="fab-cotton" value="Cotton" /><label for="fab-cotton">Cotton</label></div>
-          <div class="filter-option"><input type="checkbox" id="fab-canvas" value="Canvas" /><label for="fab-canvas">Canvas</label></div>
-          <div class="filter-option"><input type="checkbox" id="fab-denim" value="Denim" /><label for="fab-denim">Denim</label></div>
-          <div class="filter-option"><input type="checkbox" id="fab-jute" value="Jute" /><label for="fab-jute">Jute</label></div>
-          <div class="filter-option"><input type="checkbox" id="fab-crochet" value="Crochet" /><label for="fab-crochet">Crochet</label></div>
+          <div class="filter-option"><input type="checkbox" id="fab-cotton" value="Cotton" /><label
+              for="fab-cotton">Cotton</label></div>
+          <div class="filter-option"><input type="checkbox" id="fab-canvas" value="Canvas" /><label
+              for="fab-canvas">Canvas</label></div>
+          <div class="filter-option"><input type="checkbox" id="fab-denim" value="Denim" /><label
+              for="fab-denim">Denim</label></div>
+          <div class="filter-option"><input type="checkbox" id="fab-jute" value="Jute" /><label
+              for="fab-jute">Jute</label></div>
+          <div class="filter-option"><input type="checkbox" id="fab-crochet" value="Crochet" /><label
+              for="fab-crochet">Crochet</label></div>
         </div>
 
         <button class="btn btn-outline" style="width:100%;" id="clearFilters">Clear All Filters</button>
@@ -128,7 +392,8 @@
     </div>
   </div>
 
-  <a href="https://wa.me/917887888433" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <a href="https://wa.me/917887888433" class="whatsapp-float" target="_blank" rel="noopener"
+    aria-label="Chat on WhatsApp">
     <span class="wa-icon">💬</span>
     <span class="wa-label">Chat with us</span>
   </a>
@@ -153,7 +418,10 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
-      <div class="footer-links"><h5>&nbsp;</h5><ul></ul></div>
+      <div class="footer-links">
+        <h5>&nbsp;</h5>
+        <ul></ul>
+      </div>
       <div class="footer-contact">
         <h5>Get In Touch</h5>
         <p>📞 +91 788 788 8433</p>
@@ -161,7 +429,11 @@
         <p>🌐 www.momstextiles.com</p>
       </div>
     </div>
-    <div class="footer-bottom"><div class="container"><p>&copy; 2024 Mom's Textile. All rights reserved.</p></div></div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2024 Mom's Textile. All rights reserved.</p>
+      </div>
+    </div>
   </footer>
 
   <script src="../js/main.js"></script>
@@ -169,57 +441,57 @@
     // ===== PRODUCT DATA from catalog =====
     const products = [
       // Tote Bags
-      { id:'sanchi-canvas', name:"Sanchi Canvas Tote Bag", cat:"tote", catLabel:"Tote Bag", fabric:"Canvas", material:"Canvas, Gray, Cotton & Jute", size:"14 × 16", weight:"500g", gsm:"110", icon:"🛍️", bg:"#f0e8ff" },
-      { id:'sanchi-catfit', name:"Sanchi Cat-Fit Tote Bag", cat:"tote", catLabel:"Tote Bag", fabric:"Canvas", material:"Canvas, Gray, Cotton & Jute", size:"14 × 16", weight:"500g", gsm:"110", icon:"🛍️", bg:"#ffe8f5" },
-      { id:'sanchi-colour', name:"Sanchi Tote Bag With Colour", cat:"tote", catLabel:"Tote Bag", fabric:"Canvas", material:"Canvas, Gray, Cotton & Jute", size:"14 × 16", weight:"500g", gsm:"110", icon:"🎨", bg:"#fff0e8" },
-      { id:'sanchi-print', name:"Sanchi Tote Print Bag", cat:"tote", catLabel:"Tote Bag", fabric:"Canvas", material:"Canvas, Gray, Cotton & Jute", size:"14 × 16", weight:"700g", gsm:"110", icon:"🖨️", bg:"#e8fff0" },
-      { id:'sanchi-art', name:"Sanchi Art Tote Bag", cat:"tote", catLabel:"Tote Bag", fabric:"Canvas", material:"Canvas, Gray, Cotton & Jute", size:"14 × 16", weight:"500g", gsm:"110", icon:"🎭", bg:"#f5e8ff" },
-      { id:'sanchi-calligraphy', name:"Sanchi Calligraphy Bag", cat:"tote", catLabel:"Tote Bag", fabric:"Canvas", material:"Canvas, Gray, Cotton & Jute", size:"14 × 16", weight:"700g", gsm:"110", icon:"✍️", bg:"#e8f5ff" },
-      { id:'sanchi-logo', name:"Sanchi Logo Bag", cat:"tote", catLabel:"Tote Bag", fabric:"Canvas", material:"Canvas, Gray, Cotton & Jute", size:"14 × 16", weight:"500g", gsm:"110", icon:"🏷️", bg:"#fff8e8" },
-      { id:'sanchi-denim', name:"Sanchi Denim Tote Bag", cat:"tote", catLabel:"Tote Bag", fabric:"Denim", material:"Denim", size:"14 × 16", weight:"700g", gsm:"110", icon:"👖", bg:"#e8eeff" },
+      { id: 'sanchi-canvas', name: "Sanchi Canvas Tote Bag", cat: "tote", catLabel: "Tote Bag", fabric: "Canvas", material: "Canvas, Gray, Cotton & Jute", size: "14 × 16", weight: "500g", gsm: "110", icon: "🛍️", bg: "#f0e8ff" },
+      { id: 'sanchi-catfit', name: "Sanchi Cat-Fit Tote Bag", cat: "tote", catLabel: "Tote Bag", fabric: "Canvas", material: "Canvas, Gray, Cotton & Jute", size: "14 × 16", weight: "500g", gsm: "110", icon: "🛍️", bg: "#ffe8f5" },
+      { id: 'sanchi-colour', name: "Sanchi Tote Bag With Colour", cat: "tote", catLabel: "Tote Bag", fabric: "Canvas", material: "Canvas, Gray, Cotton & Jute", size: "14 × 16", weight: "500g", gsm: "110", icon: "🎨", bg: "#fff0e8" },
+      { id: 'sanchi-print', name: "Sanchi Tote Print Bag", cat: "tote", catLabel: "Tote Bag", fabric: "Canvas", material: "Canvas, Gray, Cotton & Jute", size: "14 × 16", weight: "700g", gsm: "110", icon: "🖨️", bg: "#e8fff0" },
+      { id: 'sanchi-art', name: "Sanchi Art Tote Bag", cat: "tote", catLabel: "Tote Bag", fabric: "Canvas", material: "Canvas, Gray, Cotton & Jute", size: "14 × 16", weight: "500g", gsm: "110", icon: "🎭", bg: "#f5e8ff" },
+      { id: 'sanchi-calligraphy', name: "Sanchi Calligraphy Bag", cat: "tote", catLabel: "Tote Bag", fabric: "Canvas", material: "Canvas, Gray, Cotton & Jute", size: "14 × 16", weight: "700g", gsm: "110", icon: "✍️", bg: "#e8f5ff" },
+      { id: 'sanchi-logo', name: "Sanchi Logo Bag", cat: "tote", catLabel: "Tote Bag", fabric: "Canvas", material: "Canvas, Gray, Cotton & Jute", size: "14 × 16", weight: "500g", gsm: "110", icon: "🏷️", bg: "#fff8e8" },
+      { id: 'sanchi-denim', name: "Sanchi Denim Tote Bag", cat: "tote", catLabel: "Tote Bag", fabric: "Denim", material: "Denim", size: "14 × 16", weight: "700g", gsm: "110", icon: "👖", bg: "#e8eeff" },
       // Home & Kitchen
-      { id:'cushion-cover', name:"Cushion Cover", cat:"home", catLabel:"Home & Kitchen", fabric:"Cotton", material:"Cotton, Fur, Velvet & Silk", size:"All Type", weight:"300g", gsm:"90", icon:"🛋️", bg:"#e8f4ff" },
-      { id:'table-runner', name:"Table Runner", cat:"home", catLabel:"Home & Kitchen", fabric:"Cotton", material:"Cotton, Fur, Velvet & Silk", size:"All Type", weight:"1kg", gsm:"90", icon:"🍽️", bg:"#fff0e8" },
-      { id:'apron', name:"Apron", cat:"home", catLabel:"Home & Kitchen", fabric:"Cotton", material:"Cotton, Fur, Velvet & Silk", size:"All Type", weight:"300g", gsm:"110", icon:"👨‍🍳", bg:"#e8ffe8" },
-      { id:'hand-gloves', name:"Hand Gloves", cat:"home", catLabel:"Home & Kitchen", fabric:"Cotton", material:"Cotton, Fur, Velvet & Silk", size:"All Type", weight:"1kg", gsm:"110", icon:"🧤", bg:"#f8e8ff" },
-      { id:'kitchen-mat', name:"Kitchen Mat", cat:"home", catLabel:"Home & Kitchen", fabric:"Cotton", material:"Cotton, Fur, Velvet & Silk", size:"All Type", weight:"300g", gsm:"90", icon:"🏠", bg:"#e8fff8" },
-      { id:'plant-cover', name:"Plant Cover", cat:"home", catLabel:"Home & Kitchen", fabric:"Jute", material:"Jute", size:"All Type", weight:"1kg", gsm:"110", icon:"🪴", bg:"#f0ffe8" },
-      { id:'handkerchief', name:"Handkerchief", cat:"home", catLabel:"Home & Kitchen", fabric:"Cotton", material:"Cotton, Fur, Velvet & Silk", size:"All Type", weight:"200g", gsm:"90", icon:"🧣", bg:"#fff5e8" },
+      { id: 'cushion-cover', name: "Cushion Cover", cat: "home", catLabel: "Home & Kitchen", fabric: "Cotton", material: "Cotton, Fur, Velvet & Silk", size: "All Type", weight: "300g", gsm: "90", icon: "🛋️", bg: "#e8f4ff" },
+      { id: 'table-runner', name: "Table Runner", cat: "home", catLabel: "Home & Kitchen", fabric: "Cotton", material: "Cotton, Fur, Velvet & Silk", size: "All Type", weight: "1kg", gsm: "90", icon: "🍽️", bg: "#fff0e8" },
+      { id: 'apron', name: "Apron", cat: "home", catLabel: "Home & Kitchen", fabric: "Cotton", material: "Cotton, Fur, Velvet & Silk", size: "All Type", weight: "300g", gsm: "110", icon: "👨‍🍳", bg: "#e8ffe8" },
+      { id: 'hand-gloves', name: "Hand Gloves", cat: "home", catLabel: "Home & Kitchen", fabric: "Cotton", material: "Cotton, Fur, Velvet & Silk", size: "All Type", weight: "1kg", gsm: "110", icon: "🧤", bg: "#f8e8ff" },
+      { id: 'kitchen-mat', name: "Kitchen Mat", cat: "home", catLabel: "Home & Kitchen", fabric: "Cotton", material: "Cotton, Fur, Velvet & Silk", size: "All Type", weight: "300g", gsm: "90", icon: "🏠", bg: "#e8fff8" },
+      { id: 'plant-cover', name: "Plant Cover", cat: "home", catLabel: "Home & Kitchen", fabric: "Jute", material: "Jute", size: "All Type", weight: "1kg", gsm: "110", icon: "🪴", bg: "#f0ffe8" },
+      { id: 'handkerchief', name: "Handkerchief", cat: "home", catLabel: "Home & Kitchen", fabric: "Cotton", material: "Cotton, Fur, Velvet & Silk", size: "All Type", weight: "200g", gsm: "90", icon: "🧣", bg: "#fff5e8" },
       // Covers
-      { id:'clothing-cover', name:"Clothing Cover", cat:"covers", catLabel:"Cover", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"500g", gsm:"110", icon:"👔", bg:"#e8f0ff" },
-      { id:'jewellery-cover', name:"Jewellery Cover", cat:"covers", catLabel:"Cover", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"100g", gsm:"110", icon:"💍", bg:"#ffe8f8" },
-      { id:'makeup-cover', name:"Makeup Cover", cat:"covers", catLabel:"Cover", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"100g", gsm:"110", icon:"💄", bg:"#fce8ff" },
-      { id:'tools-cover', name:"Tools Cover", cat:"covers", catLabel:"Cover", fabric:"Cotton", material:"Cotton, Denim", size:"All Type", weight:"1kg", gsm:"110", icon:"🔧", bg:"#e8f8f0" },
-      { id:'glass-cover', name:"Glass Cover", cat:"covers", catLabel:"Cover", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"100g", gsm:"110", icon:"🥛", bg:"#f0f8ff" },
-      { id:'gifted-cover', name:"Gifted Cover", cat:"covers", catLabel:"Cover", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"250g", gsm:"110", icon:"🎁", bg:"#fff5e8" },
+      { id: 'clothing-cover', name: "Clothing Cover", cat: "covers", catLabel: "Cover", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "500g", gsm: "110", icon: "👔", bg: "#e8f0ff" },
+      { id: 'jewellery-cover', name: "Jewellery Cover", cat: "covers", catLabel: "Cover", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "100g", gsm: "110", icon: "💍", bg: "#ffe8f8" },
+      { id: 'makeup-cover', name: "Makeup Cover", cat: "covers", catLabel: "Cover", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "100g", gsm: "110", icon: "💄", bg: "#fce8ff" },
+      { id: 'tools-cover', name: "Tools Cover", cat: "covers", catLabel: "Cover", fabric: "Cotton", material: "Cotton, Denim", size: "All Type", weight: "1kg", gsm: "110", icon: "🔧", bg: "#e8f8f0" },
+      { id: 'glass-cover', name: "Glass Cover", cat: "covers", catLabel: "Cover", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "100g", gsm: "110", icon: "🥛", bg: "#f0f8ff" },
+      { id: 'gifted-cover', name: "Gifted Cover", cat: "covers", catLabel: "Cover", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "250g", gsm: "110", icon: "🎁", bg: "#fff5e8" },
       // Professional Bags
-      { id:'school-bag', name:"School Bag", cat:"professional", catLabel:"Professional Bag", fabric:"Cotton", material:"Cotton, Canvas, Denim", size:"All Type", weight:"1kg", gsm:"110", icon:"🎒", bg:"#e8f0ff" },
-      { id:'pencil-pouch', name:"Pencil Pouch", cat:"professional", catLabel:"Professional Bag", fabric:"Cotton", material:"Cotton, Canvas, Denim", size:"All Type", weight:"1kg", gsm:"110", icon:"✏️", bg:"#fff8e8" },
-      { id:'side-bag', name:"Side Bag", cat:"professional", catLabel:"Professional Bag", fabric:"Cotton", material:"Cotton, Canvas, Denim", size:"All Type", weight:"1kg", gsm:"110", icon:"👜", bg:"#f0e8ff" },
-      { id:'office-bag', name:"Office Bag", cat:"professional", catLabel:"Professional Bag", fabric:"Cotton", material:"Cotton, Canvas, Denim", size:"All Type", weight:"1kg", gsm:"110", icon:"💼", bg:"#e8fff0" },
-      { id:'hip-bag', name:"Hip Bag", cat:"professional", catLabel:"Professional Bag", fabric:"Cotton", material:"Cotton, Canvas, Denim", size:"All Type", weight:"1kg", gsm:"110", icon:"🎽", bg:"#ffe8e8" },
-      { id:'tiffin-bag', name:"Tiffin Bag", cat:"professional", catLabel:"Professional Bag", fabric:"Cotton", material:"Cotton, Canvas, Denim", size:"All Type", weight:"1kg", gsm:"110", icon:"🍱", bg:"#e8f8ff" },
+      { id: 'school-bag', name: "School Bag", cat: "professional", catLabel: "Professional Bag", fabric: "Cotton", material: "Cotton, Canvas, Denim", size: "All Type", weight: "1kg", gsm: "110", icon: "🎒", bg: "#e8f0ff" },
+      { id: 'pencil-pouch', name: "Pencil Pouch", cat: "professional", catLabel: "Professional Bag", fabric: "Cotton", material: "Cotton, Canvas, Denim", size: "All Type", weight: "1kg", gsm: "110", icon: "✏️", bg: "#fff8e8" },
+      { id: 'side-bag', name: "Side Bag", cat: "professional", catLabel: "Professional Bag", fabric: "Cotton", material: "Cotton, Canvas, Denim", size: "All Type", weight: "1kg", gsm: "110", icon: "👜", bg: "#f0e8ff" },
+      { id: 'office-bag', name: "Office Bag", cat: "professional", catLabel: "Professional Bag", fabric: "Cotton", material: "Cotton, Canvas, Denim", size: "All Type", weight: "1kg", gsm: "110", icon: "💼", bg: "#e8fff0" },
+      { id: 'hip-bag', name: "Hip Bag", cat: "professional", catLabel: "Professional Bag", fabric: "Cotton", material: "Cotton, Canvas, Denim", size: "All Type", weight: "1kg", gsm: "110", icon: "🎽", bg: "#ffe8e8" },
+      { id: 'tiffin-bag', name: "Tiffin Bag", cat: "professional", catLabel: "Professional Bag", fabric: "Cotton", material: "Cotton, Canvas, Denim", size: "All Type", weight: "1kg", gsm: "110", icon: "🍱", bg: "#e8f8ff" },
       // Lady Products
-      { id:'fashion-purse', name:"Fashion Purse", cat:"lady", catLabel:"Lady Product", fabric:"Crochet", material:"Cotton, Crochet", size:"All Type", weight:"2kg", gsm:"110", icon:"👜", bg:"#fff0f5" },
-      { id:'side-purse', name:"Side Purse", cat:"lady", catLabel:"Lady Product", fabric:"Crochet", material:"Cotton, Crochet", size:"All Type", weight:"1kg", gsm:"110", icon:"👛", bg:"#f5e8ff" },
-      { id:'party-wear-purse', name:"Party Wear Purse", cat:"lady", catLabel:"Lady Product", fabric:"Crochet", material:"Cotton, Crochet", size:"All Type", weight:"2kg", gsm:"110", icon:"🎉", bg:"#fff8e8" },
-      { id:'short-purse', name:"Short Purse", cat:"lady", catLabel:"Lady Product", fabric:"Crochet", material:"Cotton, Crochet", size:"All Type", weight:"1.5kg", gsm:"110", icon:"💰", bg:"#e8fff5" },
-      { id:'shipping-purse', name:"Shipping Purse", cat:"lady", catLabel:"Lady Product", fabric:"Crochet", material:"Cotton, Crochet", size:"All Type", weight:"2kg", gsm:"110", icon:"📦", bg:"#e8f0ff" },
+      { id: 'fashion-purse', name: "Fashion Purse", cat: "lady", catLabel: "Lady Product", fabric: "Crochet", material: "Cotton, Crochet", size: "All Type", weight: "2kg", gsm: "110", icon: "👜", bg: "#fff0f5" },
+      { id: 'side-purse', name: "Side Purse", cat: "lady", catLabel: "Lady Product", fabric: "Crochet", material: "Cotton, Crochet", size: "All Type", weight: "1kg", gsm: "110", icon: "👛", bg: "#f5e8ff" },
+      { id: 'party-wear-purse', name: "Party Wear Purse", cat: "lady", catLabel: "Lady Product", fabric: "Crochet", material: "Cotton, Crochet", size: "All Type", weight: "2kg", gsm: "110", icon: "🎉", bg: "#fff8e8" },
+      { id: 'short-purse', name: "Short Purse", cat: "lady", catLabel: "Lady Product", fabric: "Crochet", material: "Cotton, Crochet", size: "All Type", weight: "1.5kg", gsm: "110", icon: "💰", bg: "#e8fff5" },
+      { id: 'shipping-purse', name: "Shipping Purse", cat: "lady", catLabel: "Lady Product", fabric: "Crochet", material: "Cotton, Crochet", size: "All Type", weight: "2kg", gsm: "110", icon: "📦", bg: "#e8f0ff" },
       // Diary Products
-      { id:'plen-diary', name:"Plen Diary", cat:"diary", catLabel:"Diary Product", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"1.7kg", gsm:"110", icon:"📒", bg:"#fff8e8" },
-      { id:'hand-painting-diary', name:"Hand-Painting Diary", cat:"diary", catLabel:"Diary Product", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"1.7kg", gsm:"110", icon:"🎨", bg:"#f8e8ff" },
-      { id:'hand-craft-diary', name:"Hand Craft Diary", cat:"diary", catLabel:"Diary Product", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"1.7kg", gsm:"110", icon:"✂️", bg:"#e8fff0" },
-      { id:'embroidery-diary', name:"Embroidery Diary", cat:"diary", catLabel:"Diary Product", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"1.7kg", gsm:"110", icon:"🌸", bg:"#ffe8f0" },
-      { id:'calligraphy-diary', name:"Calligraphy Diary", cat:"diary", catLabel:"Diary Product", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"1.7kg", gsm:"110", icon:"✍️", bg:"#e8f8ff" },
+      { id: 'plen-diary', name: "Plen Diary", cat: "diary", catLabel: "Diary Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "📒", bg: "#fff8e8" },
+      { id: 'hand-painting-diary', name: "Hand-Painting Diary", cat: "diary", catLabel: "Diary Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "🎨", bg: "#f8e8ff" },
+      { id: 'hand-craft-diary', name: "Hand Craft Diary", cat: "diary", catLabel: "Diary Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "✂️", bg: "#e8fff0" },
+      { id: 'embroidery-diary', name: "Embroidery Diary", cat: "diary", catLabel: "Diary Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "🌸", bg: "#ffe8f0" },
+      { id: 'calligraphy-diary', name: "Calligraphy Diary", cat: "diary", catLabel: "Diary Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "✍️", bg: "#e8f8ff" },
       // Baby Products
-      { id:'baby-bed', name:"Slipping Bed With Net", cat:"baby", catLabel:"Baby Product", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"1.7kg", gsm:"110", icon:"🛏️", bg:"#e8f8ff" },
-      { id:'milk-botal-cover', name:"Milk Botal Cover", cat:"baby", catLabel:"Baby Product", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"1.7kg", gsm:"110", icon:"🍼", bg:"#fff0e8" },
-      { id:'baby-cushion', name:"Baby Cushion", cat:"baby", catLabel:"Baby Product", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"1.7kg", gsm:"110", icon:"☁️", bg:"#f0e8ff" },
-      { id:'baby-eating-cover', name:"Baby Eating Cover", cat:"baby", catLabel:"Baby Product", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"150g", gsm:"110", icon:"🧹", bg:"#e8ffe8" },
-      { id:'breastfeeding-cover', name:"Breastfeeding Cover", cat:"baby", catLabel:"Baby Product", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"700g", gsm:"110", icon:"👶", bg:"#fff5f0" },
+      { id: 'baby-bed', name: "Slipping Bed With Net", cat: "baby", catLabel: "Baby Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "🛏️", bg: "#e8f8ff" },
+      { id: 'milk-botal-cover', name: "Milk Botal Cover", cat: "baby", catLabel: "Baby Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "🍼", bg: "#fff0e8" },
+      { id: 'baby-cushion', name: "Baby Cushion", cat: "baby", catLabel: "Baby Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "☁️", bg: "#f0e8ff" },
+      { id: 'baby-eating-cover', name: "Baby Eating Cover", cat: "baby", catLabel: "Baby Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "150g", gsm: "110", icon: "🧹", bg: "#e8ffe8" },
+      { id: 'breastfeeding-cover', name: "Breastfeeding Cover", cat: "baby", catLabel: "Baby Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "700g", gsm: "110", icon: "👶", bg: "#fff5f0" },
       // Pet Products
-      { id:'pet-bed', name:"Pet Bed", cat:"pet", catLabel:"Pet Product", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"2kg", gsm:"110", icon:"🐾", bg:"#fff8e8" },
-      { id:'mat-for-pet', name:"Mat For Pet", cat:"pet", catLabel:"Pet Product", fabric:"Cotton", material:"100% Cotton", size:"All Type", weight:"1kg", gsm:"110", icon:"🐶", bg:"#e8f8e8" },
+      { id: 'pet-bed', name: "Pet Bed", cat: "pet", catLabel: "Pet Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "2kg", gsm: "110", icon: "🐾", bg: "#fff8e8" },
+      { id: 'mat-for-pet', name: "Mat For Pet", cat: "pet", catLabel: "Pet Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1kg", gsm: "110", icon: "🐶", bg: "#e8f8e8" },
     ];
 
     let activeCategories = new Set();
@@ -235,8 +507,8 @@
         return catOk && fabOk && searchOk;
       });
 
-      if (sortMode === 'az') filtered.sort((a,b) => a.name.localeCompare(b.name));
-      if (sortMode === 'za') filtered.sort((a,b) => b.name.localeCompare(a.name));
+      if (sortMode === 'az') filtered.sort((a, b) => a.name.localeCompare(b.name));
+      if (sortMode === 'za') filtered.sort((a, b) => b.name.localeCompare(a.name));
 
       const grid = document.getElementById('productGrid');
       const count = document.getElementById('resultsCount');
@@ -254,10 +526,26 @@
             <span class="product-cat">${p.catLabel}</span>
             <h4>${p.name}</h4>
             <div class="product-specs">${p.material} · ${p.size} · ${p.gsm} GSM · ${p.weight}</div>
+           
             <div class="product-footer">
-              <a href="product-details.html?id=${p.id}" class="btn btn-sm btn-primary">View Details</a>
-              <a href="https://wa.me/917887888433?text=Hi! I'm interested in ${encodeURIComponent(p.name)}" target="_blank" class="btn btn-sm btn-icon" title="Enquire on WhatsApp">💬</a>
-            </div>
+
+                 <a href="product-details.html?id=${p.id}"
+                    class="btn btn-sm btn-primary">
+                     View Details
+                 </a>
+
+  <button
+      class="btn btn-sm btn-success"
+      onclick="addToCart('${p.id}','${p.name}',299)">
+      Add To Cart
+  </button>
+
+  <a href="checkout.html"
+     class="btn btn-sm btn-warning">
+     Buy Now
+  </a>
+
+</div>
           </div>
         </div>
       `).join('');
@@ -266,8 +554,8 @@
     function renderActiveFilters() {
       const container = document.getElementById('activeFilters');
       const tags = [];
-      activeCategories.forEach(c => tags.push({ label: c, type:'cat' }));
-      activeFabrics.forEach(f => tags.push({ label: f, type:'fab' }));
+      activeCategories.forEach(c => tags.push({ label: c, type: 'cat' }));
+      activeFabrics.forEach(f => tags.push({ label: f, type: 'fab' }));
       container.innerHTML = tags.map(t => `
         <span class="filter-tag">${t.label} <button onclick="removeFilter('${t.type}','${t.label}')">×</button></span>
       `).join('');
@@ -339,7 +627,31 @@
       renderActiveFilters();
     }
 
+    function addToCart(id, name, price) {
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      let existing = cart.find(item => item.id === id);
+
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({
+          id,
+            name,
+            price,
+          qty: 1
+        });
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      alert(name + " added to cart!");
+
+    }
+
     renderProducts();
   </script>
 </body>
+
 </html>

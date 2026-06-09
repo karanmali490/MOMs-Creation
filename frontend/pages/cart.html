@@ -1,66 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shopping Cart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopping Cart</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<style>
-body{
-    background:#f8f9fa;
-}
-.cart-card{
-    background:#fff;
-    border-radius:10px;
-    padding:20px;
-    box-shadow:0 0 10px rgba(0,0,0,.1);
-}
-</style>
+    <style>
+        body {
+            background: #f8f9fa;
+        }
+
+        .cart-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container mt-5">
-    <h2 class="mb-4">Shopping Cart</h2>
+    <div class="container mt-5">
+        <h2 class="mb-4">Shopping Cart</h2>
 
-    <div class="cart-card">
+        <div class="cart-card">
 
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Qty</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                <tr>
-                    <td>Canvas Tote Bag</td>
-                    <td>₹299</td>
-                    <td>
-                        <input type="number" value="1" class="form-control qty">
-                    </td>
-                    <td>₹299</td>
-                </tr>
-            </tbody>
-        </table>
+                <tbody id="cartItems">
+                </tbody>
 
-        <h4 class="text-end">
-            Grand Total : ₹299
-        </h4>
+                <h4 class="text-end">
+                    Grand Total : ₹<span id="grandTotal">0</span>
+                </h4>
+            </table>
 
-        <div class="text-end">
-            <a href="checkout.html" class="btn btn-success">
-                Proceed To Checkout
-            </a>
+
+
+            <div class="text-end">
+                <a href="checkout.html" class="btn btn-success">
+                    Proceed To Checkout
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- Related Products -->
+
+        <section class="related-products mt-5">
+            <h2 class="mb-4">You May Also Like</h2>
+
+            <div id="relatedProducts" class="row g-4">
+            </div>
+        </section>
+    </div>
+
+    <script>
+
+        // ===== PRODUCT DATA from catalog =====
+        const relatedProducts = [
+            // Tote Bags
+            { id: 'sanchi-canvas', name: "Sanchi Canvas Tote Bag", cat: "tote", catLabel: "Tote Bag", fabric: "Canvas", material: "Canvas, Gray, Cotton & Jute", size: "14 × 16", weight: "500g", gsm: "110", icon: "🛍️", bg: "#f0e8ff" },
+            { id: 'sanchi-catfit', name: "Sanchi Cat-Fit Tote Bag", cat: "tote", catLabel: "Tote Bag", fabric: "Canvas", material: "Canvas, Gray, Cotton & Jute", size: "14 × 16", weight: "500g", gsm: "110", icon: "🛍️", bg: "#ffe8f5" },
+            { id: 'sanchi-colour', name: "Sanchi Tote Bag With Colour", cat: "tote", catLabel: "Tote Bag", fabric: "Canvas", material: "Canvas, Gray, Cotton & Jute", size: "14 × 16", weight: "500g", gsm: "110", icon: "🎨", bg: "#fff0e8" },
+
+
+            { id: 'sanchi-calligraphy', name: "Sanchi Calligraphy Bag", cat: "tote", catLabel: "Tote Bag", fabric: "Canvas", material: "Canvas, Gray, Cotton & Jute", size: "14 × 16", weight: "700g", gsm: "110", icon: "✍️", bg: "#e8f5ff" },
+            { id: 'sanchi-logo', name: "Sanchi Logo Bag", cat: "tote", catLabel: "Tote Bag", fabric: "Canvas", material: "Canvas, Gray, Cotton & Jute", size: "14 × 16", weight: "500g", gsm: "110", icon: "🏷️", bg: "#fff8e8" },
+            { id: 'sanchi-denim', name: "Sanchi Denim Tote Bag", cat: "tote", catLabel: "Tote Bag", fabric: "Denim", material: "Denim", size: "14 × 16", weight: "700g", gsm: "110", icon: "👖", bg: "#e8eeff" },
+            // Home & Kitchen
+            { id: 'cushion-cover', name: "Cushion Cover", cat: "home", catLabel: "Home & Kitchen", fabric: "Cotton", material: "Cotton, Fur, Velvet & Silk", size: "All Type", weight: "300g", gsm: "90", icon: "🛋️", bg: "#e8f4ff" },
+            { id: 'table-runner', name: "Table Runner", cat: "home", catLabel: "Home & Kitchen", fabric: "Cotton", material: "Cotton, Fur, Velvet & Silk", size: "All Type", weight: "1kg", gsm: "90", icon: "🍽️", bg: "#fff0e8" },
+            { id: 'apron', name: "Apron", cat: "home", catLabel: "Home & Kitchen", fabric: "Cotton", material: "Cotton, Fur, Velvet & Silk", size: "All Type", weight: "300g", gsm: "110", icon: "👨‍🍳", bg: "#e8ffe8" },
+            { id: 'hand-gloves', name: "Hand Gloves", cat: "home", catLabel: "Home & Kitchen", fabric: "Cotton", material: "Cotton, Fur, Velvet & Silk", size: "All Type", weight: "1kg", gsm: "110", icon: "🧤", bg: "#f8e8ff" },
+            { id: 'kitchen-mat', name: "Kitchen Mat", cat: "home", catLabel: "Home & Kitchen", fabric: "Cotton", material: "Cotton, Fur, Velvet & Silk", size: "All Type", weight: "300g", gsm: "90", icon: "🏠", bg: "#e8fff8" },
+            { id: 'plant-cover', name: "Plant Cover", cat: "home", catLabel: "Home & Kitchen", fabric: "Jute", material: "Jute", size: "All Type", weight: "1kg", gsm: "110", icon: "🪴", bg: "#f0ffe8" },
+            { id: 'handkerchief', name: "Handkerchief", cat: "home", catLabel: "Home & Kitchen", fabric: "Cotton", material: "Cotton, Fur, Velvet & Silk", size: "All Type", weight: "200g", gsm: "90", icon: "🧣", bg: "#fff5e8" },
+            // Covers
+            { id: 'clothing-cover', name: "Clothing Cover", cat: "covers", catLabel: "Cover", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "500g", gsm: "110", icon: "👔", bg: "#e8f0ff" },
+            { id: 'jewellery-cover', name: "Jewellery Cover", cat: "covers", catLabel: "Cover", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "100g", gsm: "110", icon: "💍", bg: "#ffe8f8" },
+            { id: 'makeup-cover', name: "Makeup Cover", cat: "covers", catLabel: "Cover", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "100g", gsm: "110", icon: "💄", bg: "#fce8ff" },
+            { id: 'tools-cover', name: "Tools Cover", cat: "covers", catLabel: "Cover", fabric: "Cotton", material: "Cotton, Denim", size: "All Type", weight: "1kg", gsm: "110", icon: "🔧", bg: "#e8f8f0" },
+            { id: 'glass-cover', name: "Glass Cover", cat: "covers", catLabel: "Cover", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "100g", gsm: "110", icon: "🥛", bg: "#f0f8ff" },
+            { id: 'gifted-cover', name: "Gifted Cover", cat: "covers", catLabel: "Cover", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "250g", gsm: "110", icon: "🎁", bg: "#fff5e8" },
+            // Professional Bags
+            { id: 'school-bag', name: "School Bag", cat: "professional", catLabel: "Professional Bag", fabric: "Cotton", material: "Cotton, Canvas, Denim", size: "All Type", weight: "1kg", gsm: "110", icon: "🎒", bg: "#e8f0ff" },
+            { id: 'pencil-pouch', name: "Pencil Pouch", cat: "professional", catLabel: "Professional Bag", fabric: "Cotton", material: "Cotton, Canvas, Denim", size: "All Type", weight: "1kg", gsm: "110", icon: "✏️", bg: "#fff8e8" },
+            { id: 'side-bag', name: "Side Bag", cat: "professional", catLabel: "Professional Bag", fabric: "Cotton", material: "Cotton, Canvas, Denim", size: "All Type", weight: "1kg", gsm: "110", icon: "👜", bg: "#f0e8ff" },
+            { id: 'office-bag', name: "Office Bag", cat: "professional", catLabel: "Professional Bag", fabric: "Cotton", material: "Cotton, Canvas, Denim", size: "All Type", weight: "1kg", gsm: "110", icon: "💼", bg: "#e8fff0" },
+            { id: 'hip-bag', name: "Hip Bag", cat: "professional", catLabel: "Professional Bag", fabric: "Cotton", material: "Cotton, Canvas, Denim", size: "All Type", weight: "1kg", gsm: "110", icon: "🎽", bg: "#ffe8e8" },
+            { id: 'tiffin-bag', name: "Tiffin Bag", cat: "professional", catLabel: "Professional Bag", fabric: "Cotton", material: "Cotton, Canvas, Denim", size: "All Type", weight: "1kg", gsm: "110", icon: "🍱", bg: "#e8f8ff" },
+            // Lady Products
+            { id: 'fashion-purse', name: "Fashion Purse", cat: "lady", catLabel: "Lady Product", fabric: "Crochet", material: "Cotton, Crochet", size: "All Type", weight: "2kg", gsm: "110", icon: "👜", bg: "#fff0f5" },
+            { id: 'side-purse', name: "Side Purse", cat: "lady", catLabel: "Lady Product", fabric: "Crochet", material: "Cotton, Crochet", size: "All Type", weight: "1kg", gsm: "110", icon: "👛", bg: "#f5e8ff" },
+            { id: 'party-wear-purse', name: "Party Wear Purse", cat: "lady", catLabel: "Lady Product", fabric: "Crochet", material: "Cotton, Crochet", size: "All Type", weight: "2kg", gsm: "110", icon: "🎉", bg: "#fff8e8" },
+            { id: 'short-purse', name: "Short Purse", cat: "lady", catLabel: "Lady Product", fabric: "Crochet", material: "Cotton, Crochet", size: "All Type", weight: "1.5kg", gsm: "110", icon: "💰", bg: "#e8fff5" },
+            { id: 'shipping-purse', name: "Shipping Purse", cat: "lady", catLabel: "Lady Product", fabric: "Crochet", material: "Cotton, Crochet", size: "All Type", weight: "2kg", gsm: "110", icon: "📦", bg: "#e8f0ff" },
+            // Diary Products
+            { id: 'plen-diary', name: "Plen Diary", cat: "diary", catLabel: "Diary Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "📒", bg: "#fff8e8" },
+            { id: 'hand-painting-diary', name: "Hand-Painting Diary", cat: "diary", catLabel: "Diary Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "🎨", bg: "#f8e8ff" },
+            { id: 'hand-craft-diary', name: "Hand Craft Diary", cat: "diary", catLabel: "Diary Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "✂️", bg: "#e8fff0" },
+            { id: 'embroidery-diary', name: "Embroidery Diary", cat: "diary", catLabel: "Diary Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "🌸", bg: "#ffe8f0" },
+            { id: 'calligraphy-diary', name: "Calligraphy Diary", cat: "diary", catLabel: "Diary Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "✍️", bg: "#e8f8ff" },
+            // Baby Products
+            { id: 'baby-bed', name: "Slipping Bed With Net", cat: "baby", catLabel: "Baby Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "🛏️", bg: "#e8f8ff" },
+            { id: 'milk-botal-cover', name: "Milk Botal Cover", cat: "baby", catLabel: "Baby Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "🍼", bg: "#fff0e8" },
+            { id: 'baby-cushion', name: "Baby Cushion", cat: "baby", catLabel: "Baby Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1.7kg", gsm: "110", icon: "☁️", bg: "#f0e8ff" },
+            { id: 'baby-eating-cover', name: "Baby Eating Cover", cat: "baby", catLabel: "Baby Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "150g", gsm: "110", icon: "🧹", bg: "#e8ffe8" },
+            { id: 'breastfeeding-cover', name: "Breastfeeding Cover", cat: "baby", catLabel: "Baby Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "700g", gsm: "110", icon: "👶", bg: "#fff5f0" },
+            // Pet Products
+            { id: 'pet-bed', name: "Pet Bed", cat: "pet", catLabel: "Pet Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "2kg", gsm: "110", icon: "🐾", bg: "#fff8e8" },
+            { id: 'mat-for-pet', name: "Mat For Pet", cat: "pet", catLabel: "Pet Product", fabric: "Cotton", material: "100% Cotton", size: "All Type", weight: "1kg", gsm: "110", icon: "🐶", bg: "#e8f8e8" },
+        ];
+
+        function loadCart() {
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            let html = "";
+            let grandTotal = 0;
+
+            cart.forEach((item, index) => {
+
+                let total = item.price * item.qty;
+                grandTotal += total;
+
+                html += `
+        <tr>
+            <td>${item.name}</td>
+
+            <td>₹${item.price}</td>
+
+            <td>
+                <input
+                    type="number"
+                    min="1"
+                    value="${item.qty}"
+                    class="form-control"
+                    onchange="updateQty(${index}, this.value)">
+            </td>
+
+            <td>
+                ₹${total}
+                <br><br>
+
+                <button
+                    class="btn btn-danger btn-sm"
+                    onclick="removeItem(${index})">
+                    Remove
+                </button>
+            </td>
+        </tr>
+        `;
+            });
+
+            document.getElementById("cartItems").innerHTML = html;
+            document.getElementById("grandTotal").innerText = grandTotal;
+        }
+
+        function updateQty(index, qty) {
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            cart[index].qty = parseInt(qty);
+
+            localStorage.setItem(
+                "cart",
+                JSON.stringify(cart)
+            );
+
+            loadCart();
+        }
+
+        function removeItem(index) {
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            cart.splice(index, 1);
+
+            localStorage.setItem(
+                "cart",
+                JSON.stringify(cart)
+            );
+
+            loadCart();
+        }
+
+        loadCart();
+
+      function loadRelatedProducts() {
+        
+
+    const html = relatedProducts.slice(0,8).map(product => `
+
+    <div class="col-lg-3 col-md-6 col-sm-12">
+
+        <div class="product-card">
+
+            <div class="product-img"
+                style="background:${product.bg}">
+                ${product.icon}
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-cat">
+                    ${product.catLabel}
+                </span>
+
+                <h4>${product.name}</h4>
+
+                <div class="product-specs">
+                    ${product.fabric} | ${product.gsm} GSM
+                </div>
+
+                <div class="product-footer">
+
+                    <a href="product-details.html?id=${product.id}"
+                        class="btn btn-primary">
+                        Details
+                    </a>
+
+                    <button
+                        class="btn btn-success"
+                        onclick="addToCart('${product.id}','${product.name}',299)">
+                        Cart
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
 
     </div>
-</div>
+
+    `).join("");
+
+    document.getElementById("relatedProducts").innerHTML = html;
+} 
+loadRelatedProducts();
+
+function addToCart(id, name, price) {
+
+    let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+    let existing =
+        cart.find(item => item.id === id);
+
+    if(existing){
+
+        existing.qty += 1;
+
+    }else{
+
+        cart.push({
+            id:id,
+            name:name,
+            price:price,
+            qty:1
+        });
+
+    }
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    alert(name + " Added To Cart");
+
+    loadCart();
+}
+
+    </script>
 
 </body>
+
 </html>

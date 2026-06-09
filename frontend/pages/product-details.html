@@ -119,6 +119,55 @@
       .detail-layout {
         grid-template-columns: 1fr;
       }
+
+
+      .related-section {
+        margin-top: 60px;
+      }
+
+      .related-grid {
+        display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,220px));
+    gap:15px;
+    justify-content:center;
+      }
+
+      .related-card {
+         background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+    transition:.3s;
+      }
+
+      .related-card:hover{
+    transform:translateY(-3px);
+}
+
+      .related-img {
+        height:120px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:40px;
+      }
+
+      .related-info {
+        padding:12px;
+    text-align:center;
+      }
+
+      .related-info h4 {
+        font-size:15px;
+    margin-bottom:8px;
+    font-weight:600;
+      }
+
+      .related-info .btn {
+        margin-right: 8px;
+        margin-top: 10px;
+      }
+
     }
   </style>
 </head>
@@ -196,7 +245,11 @@
     </div>
   </footer>
 
-  <script src="../js/main.js"></script>
+  <script src="../js/main.js">
+
+  </script>
+
+
   <script>
     const productCatalog = {
       'sanchi-canvas': { name: 'Sanchi Canvas Tote Bag', catLabel: 'Tote Bag', fabric: 'Canvas', material: 'Canvas, Gray, Cotton & Jute', size: '14 × 16', weight: '500g', gsm: '110', icon: '🛍️', bg: '#f0e8ff', description: 'A durable canvas tote designed for daily use and bulk branding.' },
@@ -212,6 +265,16 @@
     const params = new URLSearchParams(window.location.search);
     const productId = params.get('id');
     const product = productCatalog[productId];
+    function getRelatedProducts(currentId, currentCategory) {
+
+      return Object.entries(productCatalog)
+        .filter(([id, item]) =>
+          id !== currentId &&
+          item.catLabel === currentCategory
+        )
+        .slice(0, 4);
+
+    }
     const detailContent = document.getElementById('detailContent');
 
     if (!product) {
@@ -240,11 +303,13 @@
               <div class="info-box"><span>GSM</span><strong>${product.gsm}</strong></div>
               <div class="info-box"><span>Category</span><strong>${product.catLabel}</strong></div>
             </div>
+
+
             <div class="detail-actions">
 
-  <a class="btn btn-primary" href="cart.html">
-    Add To Cart
-  </a>
+  <button class="btn btn-primary" onclick="addToCart()">
+  Add To Cart
+</button>
 
   <a class="btn btn-outline" href="checkout.html">
     Buy Now
@@ -265,6 +330,87 @@
           </aside>
         </div>
       `;
+    }
+
+    const related = getRelatedProducts(
+      productId,
+      product.catLabel
+    );
+
+    document.getElementById("relatedProducts").innerHTML = `
+
+<section class="related-section">
+
+<h2>Related Products</h2>
+
+<div class="related-grid">
+
+${related.map(([id, item]) => `
+
+<div class="related-card">
+
+<div class="related-img"
+style="background:${item.bg}">
+${item.icon}
+</div>
+
+<div class="related-info">
+
+<h4>${item.name}</h4>
+
+<p>${item.fabric} | ${item.gsm} GSM</p>
+
+<a href="product-details.html?id=${id}"
+class="btn btn-primary">
+View Details
+</a>
+
+<button
+class="btn btn-success"
+onclick="addToCart('${id}','${item.name}',299)">
+Add To Cart
+</button>
+
+</div>
+
+</div>
+
+`).join("")}
+
+</div>
+
+</section>
+`;
+
+    function addToCart() {
+
+      const product = {
+        id: productId,
+        name: product.name,
+        price: 299,
+        qty: 1
+      };
+
+      let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+      let existing =
+        cart.find(item => item.id === product.id);
+
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push(product);
+      }
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+      );
+
+      alert("Product Added To Cart");
+
+      window.location.href = "cart.html";
     }
   </script>
 </body>
